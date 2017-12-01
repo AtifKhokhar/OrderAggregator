@@ -105,14 +105,19 @@ namespace OrderAggregator
 
         };
 
-        public int CalculateMaxPrice()
+        public double CalculateMaxPrice()
         {
-
-            throw new NotImplementedException();
-            //foreach (var order in OrderList)
-            //{
-            //    return;
-            //}
+            double previousPrice = 0;
+            double maxPrice = 0;
+            foreach (var order in OrderList)
+            {
+                if (order.Price >= previousPrice)
+                {
+                    maxPrice = order.Price;
+                    previousPrice = order.Price;
+                }
+            }
+            return maxPrice;
         }
     }
 }
