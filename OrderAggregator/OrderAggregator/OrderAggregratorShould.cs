@@ -33,5 +33,15 @@ namespace OrderAggregator
 
 
         }
+
+        [Test]
+        public void CalculateMaxPrice()
+        {
+            OrderAggregator sut = new OrderAggregator();
+
+            var actualMaxPrice = sut.CalculateMaxPrice();
+            //assert
+            Assert.That(actualMaxPrice.Equals(355.2));
+        }
     }
 }
