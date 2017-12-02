@@ -355,6 +355,11 @@ namespace OrderAggregator
             return maxPrice;
         }
 
+        public double CalculateTotalFromOrderList()
+        {
+            return OrderList.Sum(x => x.Price);
+        }
+
         public string CalculateMostExpensiveGender()
         {
             var maleTotal = 0.00;
@@ -373,7 +378,6 @@ namespace OrderAggregator
 
             return maleTotal > femaleTotal ? "M" : "F";
         }
-
 
     }
 }
