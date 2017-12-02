@@ -63,5 +63,15 @@ namespace OrderAggregator
             //assert
             Assert.That(actualMaxPrice.Equals(355.2));
         }
+
+        [Test]
+        public void CalculateMostExpensiveGender()
+        {
+            OrderAggregator sut = new OrderAggregator();
+
+            var actualMostExpensiveGender = sut.CalculateMostExpensiveGender();
+            //assert
+            Assert.That(actualMostExpensiveGender.Equals("F"));
+        }
     }
 }

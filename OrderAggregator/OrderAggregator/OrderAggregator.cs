@@ -354,5 +354,26 @@ namespace OrderAggregator
             }
             return maxPrice;
         }
+
+        public string CalculateMostExpensiveGender()
+        {
+            var maleTotal = 0.00;
+            var femaleTotal = 0.00;
+            foreach (var order in OrderList)
+            {
+                if(order.Sex.Equals("M"))
+                {
+                    maleTotal += order.Price;
+                }
+                if (order.Sex.Equals("F"))
+                {
+                    femaleTotal += order.Price;
+                }
+            }
+
+            return maleTotal > femaleTotal ? "M" : "F";
+        }
+
+
     }
 }
