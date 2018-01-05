@@ -117,47 +117,17 @@ namespace OrderAggregator
 
         public double CalculateMaxPriceForList()
         {
-            double previousPrice = 0;
-            double maxPrice = 0;
-            foreach (var order in OrderList)
-            {
-                if (order.Price >= previousPrice)
-                {
-                    maxPrice = order.Price;
-                    previousPrice = order.Price;
-                }
-            }
-            return maxPrice;
+            return OrderArray.Max(order => order.Price);
         }
 
         public double CalculateMaxPriceForArray()
         {
-            double previousPrice = 0;
-            double maxPrice = 0;
-            for (int i = 0; i < OrderArray.Length; i++)
-            {
-                if(OrderArray[i].Price >= previousPrice)
-                {
-                    maxPrice = OrderArray[i].Price;
-                    previousPrice = OrderArray[i].Price;
-                }
-            }
-            return maxPrice;
+            return OrderArray.Max(order => order.Price);
         }
 
         public double CalculateMaxPriceForDictionary()
         {
-            double previousPrice = 0;
-            double maxPrice = 0;
-            foreach (var order in OrderDictionary)
-            {
-                if (order.Value.Price >= previousPrice)
-                {
-                    maxPrice = order.Value.Price;
-                    previousPrice = order.Value.Price;
-                }
-            }
-            return maxPrice;
+            return OrderDictionary.Values.Max(order => order.Price);
         }
 
         public double CalculateTotalFromOrderList()
