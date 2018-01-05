@@ -34,35 +34,17 @@ namespace OrderAggregator
 
         }
 
-        [Test]
-        public void CalculateMaxPriceForList()
+        [TestCase("List")]
+        [TestCase("Array")]
+        [TestCase("Dictionary")]
+        public void CalculateMaxPriceForCollectionType(string collectionType)
         {
             OrderAggregator sut = new OrderAggregator();
-
-            var actualMaxPrice = sut.CalculateMaxPriceForList();
+            var actualMaxPrice = sut.CalculateMaxPriceFromCollection(collectionType);
             //assert
             Assert.That(actualMaxPrice.Equals(355.2));
         }
 
-        [Test]
-        public void CalculateMaxPriceForArray()
-        {
-            OrderAggregator sut = new OrderAggregator();
-
-            var actualMaxPrice = sut.CalculateMaxPriceForArray();
-            //assert
-            Assert.That(actualMaxPrice.Equals(355.2));
-        }
-
-        [Test]
-        public void CalculateMaxPriceForDictionary()
-        {
-            OrderAggregator sut = new OrderAggregator();
-
-            var actualMaxPrice = sut.CalculateMaxPriceForDictionary();
-            //assert
-            Assert.That(actualMaxPrice.Equals(355.2));
-        }
 
         [Test]
         public void CalculateMostExpensiveGender()
