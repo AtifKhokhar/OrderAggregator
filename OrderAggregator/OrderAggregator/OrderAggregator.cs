@@ -156,19 +156,9 @@ namespace OrderAggregator
 
         public string CalculateMostExpensiveGender()
         {
-            var maleTotal = 0.00;
-            var femaleTotal = 0.00;
-            foreach (var order in OrderList)
-            {
-                if(order.Sex.Equals("M"))
-                {
-                    maleTotal += order.Price;
-                }
-                if (order.Sex.Equals("F"))
-                {
-                    femaleTotal += order.Price;
-                }
-            }
+
+           var maleTotal = OrderList.Where(order => order.Sex.Equals("M")).Sum(order => order.Price);
+           var femaleTotal = OrderList.Where(order => order.Sex.Equals("F")).Sum(order => order.Price);
 
             return maleTotal > femaleTotal ? "M" : "F";
         }
