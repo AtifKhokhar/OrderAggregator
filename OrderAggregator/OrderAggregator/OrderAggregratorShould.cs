@@ -11,6 +11,21 @@ namespace OrderAggregator
     [TestFixture]
     public class OrderAggregratorShould
     {
+        private OrderAggregator sut;
+        private Dictionary<string, IEnumerable<Order>> collectionTypes;
+
+        [SetUp]
+        public void Setup()
+        {
+            sut = new OrderAggregator();
+            collectionTypes = new Dictionary<string, IEnumerable<Order>>()
+            {
+                { "List", sut.OrderList},
+                { "Array", sut.OrderArray},
+                { "Dictionary", sut.OrderDictionary.Values},
+            };
+        }
+
 
         [Test]
         public void ContainsAnOrderFromRaul()
@@ -22,10 +37,7 @@ namespace OrderAggregator
                 Price = 26.7,
                 Sex = "M"
             };
-            
-           
-            
-            OrderAggregator sut = new OrderAggregator();
+              
             //assert
             //can only assert on values between the list object and my test object because they are not the same instance objects
             Assert.That(sut.OrderList.Any(x => x.Name == expectedOrderInList.Name));
@@ -39,8 +51,9 @@ namespace OrderAggregator
         [TestCase("Dictionary")]
         public void CalculateMaxPriceForCollectionType(string collectionType)
         {
-            OrderAggregator sut = new OrderAggregator();
-            var actualMaxPrice = sut.CalculateMaxPriceFromCollection(collectionType);
+            IEnumerable<Order> collection;
+            collectionTypes.TryGetValue(collectionType,out collection);
+            var actualMaxPrice = sut.CalculateMaxPriceFromCollection(collection);
             //assert
             Assert.That(actualMaxPrice.Equals(355.2));
         }
@@ -49,7 +62,6 @@ namespace OrderAggregator
         [Test]
         public void CalculateMostExpensiveGender()
         {
-            OrderAggregator sut = new OrderAggregator();
 
             var actualMostExpensiveGender = sut.CalculateMostExpensiveGender();
             //assert
@@ -59,7 +71,6 @@ namespace OrderAggregator
         [Test]
         public void CalculateMaxTotalFromOrderList()
         {
-            OrderAggregator sut = new OrderAggregator();
 
             var actualMaxTotal = sut.CalculateTotalFromOrderList();
             //assert
