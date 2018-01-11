@@ -115,21 +115,6 @@ namespace OrderAggregator
             OrderDictionary = OrderList.ToDictionary(order => order.OrderId, order => order);
         }
 
-        public double CalculateMaxPriceForList()
-        {
-            return OrderList.Max(order => order.Price);
-        }
-
-        public double CalculateMaxPriceForArray()
-        {
-            return OrderArray.Max(order => order.Price);
-        }
-
-        public double CalculateMaxPriceForDictionary()
-        {
-            return OrderDictionary.Values.Max(order => order.Price);
-        }
-
         public double CalculateMaxPriceFromCollection(string collectionType)
         {
             double maxPrice =0;
