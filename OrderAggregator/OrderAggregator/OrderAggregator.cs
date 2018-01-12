@@ -117,9 +117,7 @@ namespace OrderAggregator
 
         public double CalculateMaxPriceFromCollection<T>(T collection) where T : IEnumerable<Order>
         {
-            double maxPrice =0;
-              maxPrice = collection.Max(order => order.Price);
-            return maxPrice;
+              return collection.Max(order => order.Price);
         }
 
         public double CalculateTotalFromCollection<T>(T collection) where T : IEnumerable<Order>
@@ -154,7 +152,7 @@ namespace OrderAggregator
         {
             var maleTotal = 0.00;
             var femaleTotal = 0.00;
-            foreach (var order in OrderList)
+            foreach (var order in OrderDictionary.Values)
             {
                 if (order.Sex.Equals("M"))
                     maleTotal += order.Price;

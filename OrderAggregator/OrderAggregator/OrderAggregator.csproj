@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IBillable.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderAggregator.cs" />
     <Compile Include="OrderAggregratorShould.cs" />
