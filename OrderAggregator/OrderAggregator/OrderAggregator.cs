@@ -122,9 +122,9 @@ namespace OrderAggregator
             return maxPrice;
         }
 
-        public double CalculateTotalFromOrderList()
+        public double CalculateTotalFromCollection<T>(T collection) where T : IEnumerable<Order>
         {
-            return OrderList.Sum(x => x.Price);
+            return collection.Sum(x => x.Price);
         }
 
         public string CalculateMostExpensiveGenderFromCollection<T>(T collection) where T : IEnumerable<Order>

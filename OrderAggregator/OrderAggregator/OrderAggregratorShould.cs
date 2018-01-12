@@ -61,7 +61,7 @@ namespace OrderAggregator
         [TestCase("List")]
         [TestCase("Array")]
         [TestCase("Dictionary")]
-        public void CalculateMostExpensiveGender(string collectionType)
+        public void CalculateMostExpensiveGenderForCollectionType(string collectionType)
         {
             collectionTypes.TryGetValue(collectionType, out var collection);
             var actualMostExpensiveGender = sut.CalculateMostExpensiveGenderFromCollection(collection);
@@ -69,11 +69,13 @@ namespace OrderAggregator
             Assert.That(actualMostExpensiveGender.Equals("F"));
         }
 
-        [Test]
-        public void CalculateMaxTotalFromOrderList()
+        [TestCase("List")]
+        [TestCase("Array")]
+        [TestCase("Dictionary")]
+        public void CalculateMaxTotalForCollectionType(string collectionType)
         {
-
-            var actualMaxTotal = sut.CalculateTotalFromOrderList();
+            collectionTypes.TryGetValue(collectionType, out var collection);
+            var actualMaxTotal = sut.CalculateTotalFromCollection(collection);
             //assert
             Assert.That(actualMaxTotal.Equals(1566.3));
         }
