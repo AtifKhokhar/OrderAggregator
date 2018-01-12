@@ -127,11 +127,11 @@ namespace OrderAggregator
             return OrderList.Sum(x => x.Price);
         }
 
-        public string CalculateMostExpensiveGender()
+        public string CalculateMostExpensiveGenderFromCollection<T>(T collection) where T : IEnumerable<Order>
         {
 
-           var maleTotal = OrderList.Where(order => order.Sex.Equals("M")).Sum(order => order.Price);
-           var femaleTotal = OrderList.Where(order => order.Sex.Equals("F")).Sum(order => order.Price);
+           var maleTotal = collection.Where(order => order.Sex.Equals("M")).Sum(order => order.Price);
+           var femaleTotal = collection.Where(order => order.Sex.Equals("F")).Sum(order => order.Price);
 
             return maleTotal > femaleTotal ? "M" : "F";
         }

@@ -22,7 +22,7 @@ namespace OrderAggregator
             {
                 { "List", sut.OrderList},
                 { "Array", sut.OrderArray},
-                { "Dictionary", sut.OrderDictionary.Values},
+                { "Dictionary", sut.OrderDictionary.Values}
             };
         }
 
@@ -51,19 +51,20 @@ namespace OrderAggregator
         [TestCase("Dictionary")]
         public void CalculateMaxPriceForCollectionType(string collectionType)
         {
-            IEnumerable<Order> collection;
-            collectionTypes.TryGetValue(collectionType,out collection);
+            collectionTypes.TryGetValue(collectionType,out var collection);
             var actualMaxPrice = sut.CalculateMaxPriceFromCollection(collection);
             //assert
             Assert.That(actualMaxPrice.Equals(355.2));
         }
 
 
-        [Test]
-        public void CalculateMostExpensiveGender()
+        [TestCase("List")]
+        [TestCase("Array")]
+        [TestCase("Dictionary")]
+        public void CalculateMostExpensiveGender(string collectionType)
         {
-
-            var actualMostExpensiveGender = sut.CalculateMostExpensiveGender();
+            collectionTypes.TryGetValue(collectionType, out var collection);
+            var actualMostExpensiveGender = sut.CalculateMostExpensiveGenderFromCollection(collection);
             //assert
             Assert.That(actualMostExpensiveGender.Equals("F"));
         }
