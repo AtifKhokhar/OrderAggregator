@@ -96,5 +96,12 @@ namespace OrderAggregator
             Assert.That(actualMostExpensiveGender.Equals("F"));
         }
 
+        [Test]
+        public void CalculateMaxTotalForDictionary()
+        {
+            var actualMaxTotal = sut.CalculateTotalFromDictionary();
+            //assert
+            Assert.That(actualMaxTotal.Equals(1566.3));
+        }
     }
 }

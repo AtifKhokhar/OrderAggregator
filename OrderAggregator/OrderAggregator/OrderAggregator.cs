@@ -164,5 +164,15 @@ namespace OrderAggregator
 
             return maleTotal > femaleTotal ? "M" : "F";
         }
+
+        public double CalculateTotalFromDictionary()
+        {
+            double totalPrice = 0;
+            foreach (Order order in OrderDictionary.Values)
+            {
+                totalPrice += order.Price;
+            }
+            return totalPrice;
+        }
     }
 }
