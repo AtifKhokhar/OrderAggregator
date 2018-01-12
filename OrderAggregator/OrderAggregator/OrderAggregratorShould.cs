@@ -79,5 +79,14 @@ namespace OrderAggregator
             //assert
             Assert.That(actualMaxTotal.Equals(1566.3));
         }
+
+        [Test]
+        public void CalculateMaxPriceForDictionary()
+        {
+            var actualMaxPrice = sut.CalculateMaxPriceFromDictionary();
+            //assert
+            Assert.That(actualMaxPrice.Equals(355.2));
+        }
+
     }
 }

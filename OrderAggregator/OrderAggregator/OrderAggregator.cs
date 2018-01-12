@@ -136,5 +136,18 @@ namespace OrderAggregator
             return maleTotal > femaleTotal ? "M" : "F";
         }
 
+        public double CalculateMaxPriceFromDictionary()
+        {
+            double maxPrice = 0;
+            foreach (Order order in OrderDictionary.Values)
+            {
+                if (order.Price >= maxPrice)
+                {
+                    maxPrice = order.Price;
+                }
+                
+            }
+            return maxPrice;
+        }
     }
 }
