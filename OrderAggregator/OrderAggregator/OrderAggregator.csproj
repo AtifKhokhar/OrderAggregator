@@ -45,7 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IBillable.cs" />
+    <Compile Include="Billable.cs" />
+    <Compile Include="BillableShould.cs" />
+    <Compile Include="BusinessOrder.cs" />
+    <Compile Include="IOrder.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderAggregator.cs" />
     <Compile Include="OrderAggregratorShould.cs" />
