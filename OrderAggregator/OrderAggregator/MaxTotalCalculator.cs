@@ -12,5 +12,14 @@ namespace OrderAggregator
         {
             return collection.Sum(x => x.Price);
         }
+        public double CalculateTotalFromDictionary(Dictionary<int, Order> orderDictionary)
+        {
+            double totalPrice = 0;
+            foreach (Order order in orderDictionary.Values)
+            {
+                totalPrice += order.Price;
+            }
+            return totalPrice;
+        }
     }
 }

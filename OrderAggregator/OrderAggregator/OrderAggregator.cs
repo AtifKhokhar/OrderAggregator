@@ -122,50 +122,21 @@ namespace OrderAggregator
             
         }
 
-        public double CalculateMaxPriceFromDictionary()
-        {
-            double maxPrice = 0;
-            foreach (Order order in OrderDictionary.Values)
-            {
-                if (order.Price >= maxPrice)
-                {
-                    maxPrice = order.Price;
-                }
-                
-            }
-            return maxPrice;
-        }
-
-        public string CalculateMostExpensiveGenderFromDictionary()
-        {
-            var maleTotal = 0.00;
-            var femaleTotal = 0.00;
-            foreach (var order in OrderDictionary.Values)
-            {
-                if (order.Sex.Equals("M"))
-                    maleTotal += order.Price;
-                if (order.Sex.Equals("F"))
-                    femaleTotal += order.Price;
-            }
-
-            return maleTotal > femaleTotal ? "M" : "F";
-        }
-
-        public double CalculateTotalFromDictionary()
-        {
-            double totalPrice = 0;
-            foreach (Order order in OrderDictionary.Values)
-            {
-                totalPrice += order.Price;
-            }
-            return totalPrice;
-        }
-
         public string CalculateAll<T>(T collection) where T : IEnumerable<Order>
         {
             var maxPrice = maxPriceCalculator.CalculateMaxPriceFromCollection(collection);
             var mostExpensiveGender = mostExpensiveGenderCalculator.CalculateMostExpensiveGenderFromCollection(collection);
             var orderTotal = maxTotalCalculator.CalculateTotalFromCollection(collection);
+            return $"Max Price: {maxPrice}\n" +
+                   $"Most Expensive Gender: {mostExpensiveGender}\n" +
+                   $"Total of all Orders: {orderTotal}\n";
+        }
+
+        public string SimpleCalculateAllFromDictionary()
+        {
+            var maxPrice = maxPriceCalculator.CalculateMaxPriceFromDictionary(this.OrderDictionary);
+            var mostExpensiveGender = mostExpensiveGenderCalculator.CalculateMostExpensiveGenderFromDictionary(this.OrderDictionary);
+            var orderTotal = maxTotalCalculator.CalculateTotalFromDictionary(this.OrderDictionary);
             return $"Max Price: {maxPrice}\n" +
                    $"Most Expensive Gender: {mostExpensiveGender}\n" +
                    $"Total of all Orders: {orderTotal}\n";

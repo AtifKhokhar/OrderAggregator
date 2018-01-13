@@ -13,5 +13,20 @@ namespace OrderAggregator
 
             return maleTotal > femaleTotal ? "M" : "F";
         }
+
+        public string CalculateMostExpensiveGenderFromDictionary(Dictionary<int, Order> orderDictionary)
+        {
+            var maleTotal = 0.00;
+            var femaleTotal = 0.00;
+            foreach (var order in orderDictionary.Values)
+            {
+                if (order.Sex.Equals("M"))
+                    maleTotal += order.Price;
+                if (order.Sex.Equals("F"))
+                    femaleTotal += order.Price;
+            }
+
+            return maleTotal > femaleTotal ? "M" : "F";
+        }
     }
 }

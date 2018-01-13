@@ -10,6 +10,8 @@ namespace OrderAggregator
     public class MaxTotalCalculatorShould
     {
         private MaxTotalCalculator sut;
+        private List<Order> testCollection;
+
 
         [SetUp]
         public void SetUp()
@@ -20,7 +22,7 @@ namespace OrderAggregator
         [Test]
         public void CalculateMaxTotalForCollectionType()
         {
-            var testCollection = new List<Order>
+            testCollection = new List<Order>
             {
                 new Order
                 {
@@ -46,6 +48,15 @@ namespace OrderAggregator
                 }
             };
             var actualMaxTotal = sut.CalculateTotalFromCollection(testCollection);
+            //assert
+            Assert.That(actualMaxTotal.Equals(128.3));
+        }
+
+        [Test]
+        public void CalculateMaxTotalForDictionary()
+        {
+            var testDictionary = testCollection.ToDictionary(k => k.OrderId, v => v);
+            var actualMaxTotal = sut.CalculateTotalFromDictionary(testDictionary);
             //assert
             Assert.That(actualMaxTotal.Equals(128.3));
         }

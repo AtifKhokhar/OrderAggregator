@@ -10,6 +10,7 @@ namespace OrderAggregator
     public class MostExpensiveGenderCalculatorShould
     {
         private MostExpensiveGenderCalculator sut;
+        private List<Order> testCollection;
 
         [SetUp]
         public void SetUp()
@@ -20,7 +21,7 @@ namespace OrderAggregator
         [Test]
         public void CalculateMostExpensiveGenderForCollectionType()
         {
-            var testCollection = new List<Order>
+            testCollection = new List<Order>
             {
                 new Order
                 {
@@ -46,6 +47,15 @@ namespace OrderAggregator
                 }
             };
             var actualMostExpensiveGender = sut.CalculateMostExpensiveGenderFromCollection(testCollection);
+            //assert
+            Assert.That(actualMostExpensiveGender.Equals("F"));
+        }
+
+        [Test]
+        public void CalculateMostExpensiveGenderForDictionary()
+        {
+            var testDictionary = testCollection.ToDictionary(k => k.OrderId, v => v);
+            var actualMostExpensiveGender = sut.CalculateMostExpensiveGenderFromDictionary(testDictionary);
             //assert
             Assert.That(actualMostExpensiveGender.Equals("F"));
         }

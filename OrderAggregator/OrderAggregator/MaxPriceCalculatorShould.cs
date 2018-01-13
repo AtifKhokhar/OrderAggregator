@@ -10,6 +10,7 @@ namespace OrderAggregator
     public class MaxPriceCalculatorShould
     {
         private MaxPriceCalculator sut;
+        private List<Order> testCollection;
 
         [SetUp]
         public void SetUp()
@@ -20,7 +21,7 @@ namespace OrderAggregator
         [Test]
         public void CalculateMaxPriceForCollectionType()
         {
-            var testCollection = new List<Order>
+             testCollection = new List<Order>
             {
                 new Order
                 {
@@ -50,8 +51,15 @@ namespace OrderAggregator
             Assert.That(actualMaxPrice.Equals(76.2));
         }
 
-       
+        [Test]
+        public void CalculateMaxPriceForDictionary()
+        {
+            var testDictionary = testCollection.ToDictionary(k => k.OrderId, v => v);
+            var actualMaxPrice = sut.CalculateMaxPriceFromDictionary(testDictionary);
+            //assert
+            Assert.That(actualMaxPrice.Equals(76.2));
+        }
 
-        
+
     }
 }

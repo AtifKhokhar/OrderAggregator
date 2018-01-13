@@ -63,27 +63,17 @@ namespace OrderAggregator
         }
 
         [Test]
-        public void CalculateMaxPriceForDictionary()
+        public void SimpleCalculateAllFromDictionary()
         {
-            var actualMaxPrice = sut.CalculateMaxPriceFromDictionary();
+            var expectedResult = $"Max Price: 355.2\n" +
+                                 $"Most Expensive Gender: F\n" +
+                                 $"Total of all Orders: 1566.3\n";
+
+
+            var actualResult = sut.SimpleCalculateAllFromDictionary();
             //assert
-            Assert.That(actualMaxPrice.Equals(355.2));
+            Assert.That(actualResult.Equals(expectedResult));
         }
 
-        [Test]
-        public void CalculateMostExpensiveGenderForDictionary()
-        {
-            var actualMostExpensiveGender = sut.CalculateMostExpensiveGenderFromDictionary();
-            //assert
-            Assert.That(actualMostExpensiveGender.Equals("F"));
-        }
-
-        [Test]
-        public void CalculateMaxTotalForDictionary()
-        {
-            var actualMaxTotal = sut.CalculateTotalFromDictionary();
-            //assert
-            Assert.That(actualMaxTotal.Equals(1566.3));
-        }
     }
 }
