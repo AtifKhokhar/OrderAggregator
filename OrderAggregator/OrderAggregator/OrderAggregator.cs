@@ -109,29 +109,17 @@ namespace OrderAggregator
 
         public Dictionary<int, Order> OrderDictionary; 
 
+        private MaxPriceCalculator maxPriceCalculator;
+        private MostExpensiveGenderCalculator mostExpensiveGenderCalculator;
+        private MaxTotalCalculator maxTotalCalculator;
         public OrderAggregator()
         {
             OrderArray = OrderList.ToArray();
             OrderDictionary = OrderList.ToDictionary(order => order.OrderId, order => order);
-        }
-
-        public double CalculateMaxPriceFromCollection<T>(T collection) where T : IEnumerable<Order>
-        {
-              return collection.Max(order => order.Price);
-        }
-
-        public double CalculateTotalFromCollection<T>(T collection) where T : IEnumerable<Order>
-        {
-            return collection.Sum(x => x.Price);
-        }
-
-        public string CalculateMostExpensiveGenderFromCollection<T>(T collection) where T : IEnumerable<Order>
-        {
-
-           var maleTotal = collection.Where(order => order.Sex.Equals("M")).Sum(order => order.Price);
-           var femaleTotal = collection.Where(order => order.Sex.Equals("F")).Sum(order => order.Price);
-
-            return maleTotal > femaleTotal ? "M" : "F";
+            maxPriceCalculator = new MaxPriceCalculator();
+            mostExpensiveGenderCalculator = new MostExpensiveGenderCalculator();
+            maxTotalCalculator = new MaxTotalCalculator();
+            
         }
 
         public double CalculateMaxPriceFromDictionary()
@@ -171,6 +159,16 @@ namespace OrderAggregator
                 totalPrice += order.Price;
             }
             return totalPrice;
+        }
+
+        public string CalculateAll<T>(T collection) where T : IEnumerable<Order>
+        {
+            var maxPrice = maxPriceCalculator.CalculateMaxPriceFromCollection(collection);
+            var mostExpensiveGender = mostExpensiveGenderCalculator.CalculateMostExpensiveGenderFromCollection(collection);
+            var orderTotal = maxTotalCalculator.CalculateTotalFromCollection(collection);
+            return $"Max Price: {maxPrice}\n" +
+                   $"Most Expensive Gender: {mostExpensiveGender}\n" +
+                   $"Total of all Orders: {orderTotal}\n";
         }
     }
 }

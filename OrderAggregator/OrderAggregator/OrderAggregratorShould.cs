@@ -49,35 +49,17 @@ namespace OrderAggregator
         [TestCase("List")]
         [TestCase("Array")]
         [TestCase("Dictionary")]
-        public void CalculateMaxPriceForCollectionType(string collectionType)
-        {
-            collectionTypes.TryGetValue(collectionType,out var collection);
-            var actualMaxPrice = sut.CalculateMaxPriceFromCollection(collection);
-            //assert
-            Assert.That(actualMaxPrice.Equals(355.2));
-        }
-
-
-        [TestCase("List")]
-        [TestCase("Array")]
-        [TestCase("Dictionary")]
-        public void CalculateMostExpensiveGenderForCollectionType(string collectionType)
+        public void CalculateAll(string collectionType)
         {
             collectionTypes.TryGetValue(collectionType, out var collection);
-            var actualMostExpensiveGender = sut.CalculateMostExpensiveGenderFromCollection(collection);
-            //assert
-            Assert.That(actualMostExpensiveGender.Equals("F"));
-        }
+            var expectedResult = $"Max Price: 355.2\n" +
+                                 $"Most Expensive Gender: F\n" +
+                                 $"Total of all Orders: 1566.3\n";
 
-        [TestCase("List")]
-        [TestCase("Array")]
-        [TestCase("Dictionary")]
-        public void CalculateMaxTotalForCollectionType(string collectionType)
-        {
-            collectionTypes.TryGetValue(collectionType, out var collection);
-            var actualMaxTotal = sut.CalculateTotalFromCollection(collection);
+
+            var actualResult = sut.CalculateAll(collection);
             //assert
-            Assert.That(actualMaxTotal.Equals(1566.3));
+            Assert.That(actualResult.Equals(expectedResult));
         }
 
         [Test]

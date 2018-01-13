@@ -49,6 +49,12 @@
     <Compile Include="BillableShould.cs" />
     <Compile Include="BusinessOrder.cs" />
     <Compile Include="IOrder.cs" />
+    <Compile Include="MaxPriceCalculator.cs" />
+    <Compile Include="MaxPriceCalculatorShould.cs" />
+    <Compile Include="MaxTotalCalculator.cs" />
+    <Compile Include="MaxTotalCalculatorShould.cs" />
+    <Compile Include="MostExpensiveGenderCalculator.cs" />
+    <Compile Include="MostExpensiveGenderCalculatorShould.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="OrderAggregator.cs" />
     <Compile Include="OrderAggregratorShould.cs" />
