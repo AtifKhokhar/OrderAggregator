@@ -10,6 +10,16 @@ namespace OrderAggregator
     {
         static void Main(string[] args)
         {
+            var orderAggregator = new OrderAggregator();
+            var orderList = orderAggregator.OrderList;
+            var orderArray = orderAggregator.OrderArray;
+            var orderDictionary = orderAggregator.OrderDictionary;
+
+            Console.WriteLine("*****Order List Calculations*****");
+            Console.Write(orderAggregator.CalculateAll(orderList));
+            Console.WriteLine("*********************************");
+
+            Console.ReadLine();
         }
     }
 }
