@@ -13,7 +13,6 @@ namespace OrderAggregator
             var orderAggregator = new OrderAggregator();
             var orderList = orderAggregator.OrderList;
             var orderArray = orderAggregator.OrderArray;
-            var orderDictionary = orderAggregator.OrderDictionary;
 
             Console.WriteLine("*****Order List Calculations*****");
             Console.Write(orderAggregator.CalculateAll(orderList));
@@ -21,6 +20,10 @@ namespace OrderAggregator
 
             Console.WriteLine("*****Order Array Calculations*****");
             Console.Write(orderAggregator.CalculateAll(orderArray));
+            Console.WriteLine("*********************************");
+
+            Console.WriteLine("*****Simple Order Dictionary Calculations*****");
+            Console.Write(orderAggregator.SimpleCalculateAllFromDictionary());
             Console.WriteLine("*********************************");
 
             Console.ReadLine();
