@@ -19,6 +19,10 @@ namespace OrderAggregator
             Console.Write(orderAggregator.CalculateAll(orderList));
             Console.WriteLine("*********************************");
 
+            Console.WriteLine("*****Order Array Calculations*****");
+            Console.Write(orderAggregator.CalculateAll(orderArray));
+            Console.WriteLine("*********************************");
+
             Console.ReadLine();
         }
     }
