@@ -13,18 +13,35 @@ namespace OrderAggregator
             var orderAggregator = new OrderAggregator();
             var orderList = orderAggregator.OrderList;
             var orderArray = orderAggregator.OrderArray;
+            var orderBillable = new Billable<IOrder>(orderList.Find(order => order.OrderId == 1));
+            var businessOrder = new BusinessOrder()
+            {
+                OrderId = 100,
+                BusinessCompanyCode = "LSLI100SL",
+                Name = "LaserLine Print Ltd",
+                Price = 800.5
+            };
+            var businessOrderBillable = new Billable<IOrder>(businessOrder);
 
             Console.WriteLine("*****Order List Calculations*****");
             Console.Write(orderAggregator.CalculateAll(orderList));
-            Console.WriteLine("*********************************");
+            Console.WriteLine("*********************************\n");
 
             Console.WriteLine("*****Order Array Calculations*****");
             Console.Write(orderAggregator.CalculateAll(orderArray));
-            Console.WriteLine("*********************************");
+            Console.WriteLine("*********************************\n");
 
             Console.WriteLine("*****Simple Order Dictionary Calculations*****");
             Console.Write(orderAggregator.SimpleCalculateAllFromDictionary());
-            Console.WriteLine("*********************************");
+            Console.WriteLine("*********************************\n");
+
+            Console.WriteLine("*****Bill Details for Order*****");
+            Console.Write(orderBillable.PrintBill());
+            Console.WriteLine("*********************************\n");
+
+            Console.WriteLine("*****Bill Details for Business Order*****");
+            Console.Write(businessOrderBillable.PrintBill());
+            Console.WriteLine("*********************************\n");
 
             Console.ReadLine();
         }
