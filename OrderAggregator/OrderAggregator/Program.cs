@@ -13,6 +13,9 @@ namespace OrderAggregator
             var orderAggregator = new OrderAggregator();
             var orderList = orderAggregator.OrderList;
             var orderArray = orderAggregator.OrderArray;
+
+            Action<string> printAction = (x) => Console.WriteLine($"*****Order {x} Calculations*****");
+
             var orderBillable = new Billable<IOrder>(orderList.Find(order => order.OrderId == 1));
             var businessOrder = new BusinessOrder()
             {
@@ -23,11 +26,11 @@ namespace OrderAggregator
             };
             var businessOrderBillable = new Billable<IOrder>(businessOrder);
 
-            Console.WriteLine("*****Order List Calculations*****");
+            printAction.Invoke("List");
             Console.Write(orderAggregator.CalculateAll(orderList));
             Console.WriteLine("*********************************\n");
 
-            Console.WriteLine("*****Order Array Calculations*****");
+            printAction.Invoke("Array");
             Console.Write(orderAggregator.CalculateAll(orderArray));
             Console.WriteLine("*********************************\n");
 
