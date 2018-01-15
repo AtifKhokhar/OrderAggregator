@@ -26,9 +26,8 @@ namespace OrderAggregator
             };
         }
 
-
         [Test]
-        public void ContainsAnOrderFromRaul()
+        public void ContainsAnOrderFromGivenCustomerName()
         {
             var expectedOrderInList = new Order
             {
@@ -49,7 +48,7 @@ namespace OrderAggregator
         [TestCase("List")]
         [TestCase("Array")]
         [TestCase("Dictionary")]
-        public void CalculateAll(string collectionType)
+        public void CalculateMaxPriceMostExpensiveGenderMaxTotalForGivenCollectionType(string collectionType)
         {
             collectionTypes.TryGetValue(collectionType, out var collection);
             var expectedResult = $"Max Price: 355.2\n" +
@@ -63,7 +62,7 @@ namespace OrderAggregator
         }
 
         [Test]
-        public void SimpleCalculateAllFromDictionary()
+        public void CalculateMaxPriceMostExpensiveGenderMaxTotalForDictionaryWithoutLambdaOrLinqMethods()
         {
             var expectedResult = $"Max Price: 355.2\n" +
                                  $"Most Expensive Gender: F\n" +
