@@ -10,7 +10,8 @@ namespace OrderAggregator
     {
         public double CalculateTotalFromCollection<T>(T collection) where T : IEnumerable<Order>
         {
-            return collection.Sum(x => x.Price);
+            Func<Order, double> priceSelector = x => x.Price;
+            return collection.Sum(priceSelector);
         }
         public double CalculateTotalFromDictionary(Dictionary<int, Order> orderDictionary)
         {
